@@ -1,0 +1,15 @@
+@"
+# Ignore everything by default
+*
+
+# Allow folders
+!models/
+!models/*.onnx
+!models/*.pt
+
+# Allow main.py
+!main.py
+
+# Allow this .gitignore
+!.gitignore
+"@ | Out-File -Encoding UTF8 .gitignore
