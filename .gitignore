@@ -1,15 +1,58 @@
-@"
+# ===============================
 # Ignore everything by default
+# ===============================
 *
 
-# Allow folders
-!models/
-!models/*.onnx
-!models/*.pt
-
-# Allow main.py
-!main.py
-
-# Allow this .gitignore
+# ===============================
+# Allow core repo files
+# ===============================
 !.gitignore
-"@ | Out-File -Encoding UTF8 .gitignore
+!main.py
+!structure.txt
+
+# ===============================
+# Allow inference service
+# ===============================
+!inference_service/
+!inference_service/**
+!inference_service/app/
+!inference_service/app/**
+!inference_service/models/
+!inference_service/models/*.pt
+!inference_service/models/*.onnx
+!inference_service/requirement.txt
+
+# ===============================
+# Allow monitoring (Prometheus)
+# ===============================
+!monitoring/
+!monitoring/**
+!monitoring/prometheus.yml
+
+# ===============================
+# Allow top-level models folder
+# (existing GitHub structure)
+# ===============================
+!models/
+!models/*.pt
+!models/*.onnx
+
+# ===============================
+# Explicitly ignore local-only stuff
+# ===============================
+venv/
+runs/
+__pycache__/
+*.pyc
+
+# ===============================
+# Explicitly ignore large / raw data
+# ===============================
+dataset.zip
+*.mp4
+
+# ===============================
+# Ignore YOLO base pretrained models
+# ===============================
+yolov8*.pt
+yolo11n.pt
