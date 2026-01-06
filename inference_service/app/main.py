@@ -3,8 +3,10 @@ from fastapi.responses import Response
 from ultralytics import YOLO
 import cv2
 import numpy as np
-import timecd training
+import time
 import os
+import threading
+from app.kafka_consumer import start_kafka_consumer
 
 # Prometheus imports
 from prometheus_client import generate_latest, CONTENT_TYPE_LATEST
@@ -13,7 +15,6 @@ from app.metrics import (
     INFERENCE_LATENCY,
     INFERENCE_ERRORS
 )
-
 
 # ----------------------------------
 # FastAPI app initialization
@@ -30,6 +31,13 @@ app = FastAPI(
 MODEL_PATH = os.path.join("models", "best.pt")
 model = YOLO(MODEL_PATH)
 
+kafka_thread = threading.Thread(
+    target=start_kafka_consumer,
+    args=(model,),
+    daemon=True
+)
+kafka_thread.start()
+
 # ----------------------------------
 # Health check endpoint
 # ----------------------------------
@@ -41,7 +49,7 @@ def health():
     }
 
 # ----------------------------------
-# 🔥 INFERENCE ENDPOINT (THIS IS THE infer FUNCTION)
+# 🔥 INFERENCE ENDPOINT
 # ----------------------------------
 @app.post("/infer")
 async def infer(file: UploadFile = File(...)):
