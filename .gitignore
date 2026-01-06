@@ -1,18 +1,9 @@
-# ===============================
-# Ignore everything by default
-# ===============================
 *
 
-# ===============================
-# Allow core repo files
-# ===============================
 !.gitignore
 !main.py
 !structure.txt
 
-# ===============================
-# Allow inference service
-# ===============================
 !inference_service/
 !inference_service/**
 !inference_service/app/
@@ -22,37 +13,40 @@
 !inference_service/models/*.onnx
 !inference_service/requirement.txt
 
-# ===============================
-# Allow monitoring (Prometheus)
-# ===============================
 !monitoring/
-!monitoring/**
 !monitoring/prometheus.yml
 
-# ===============================
-# Allow top-level models folder
-# (existing GitHub structure)
-# ===============================
+!kafka/
+!kafka/docker-compose.yml
+!kafka/producer.py
+
 !models/
 !models/*.pt
 !models/*.onnx
 
-# ===============================
-# Explicitly ignore local-only stuff
-# ===============================
 venv/
-runs/
 __pycache__/
 *.pyc
+*.pyo
 
-# ===============================
-# Explicitly ignore large / raw data
-# ===============================
+training/
+runs/
+
 dataset.zip
 *.mp4
+*.avi
+*.mov
 
-# ===============================
-# Ignore YOLO base pretrained models
-# ===============================
+monitoring/prometheus/
+
+kafka/data/
+kafka/logs/
+kafka/volumes/
+
 yolov8*.pt
 yolo11n.pt
+
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
