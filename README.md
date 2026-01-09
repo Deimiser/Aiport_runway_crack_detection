@@ -214,3 +214,24 @@ Key Design Decisions
 * Cloud-based alerting
 * CI/CD pipeline for inference service
 
+## Raspberry Pi 5 Edge Deployment
+
+This project supports edge deployment on Raspberry Pi 5 running Ubuntu.
+
+Hardware
+- Raspberry Pi 5
+- USB webcam
+
+Software
+- Ubuntu Server 22.04
+- Python 3.10+
+- CPU-only YOLO inference
+
+Steps
+1. Clone the repository on Raspberry Pi
+2. Create a virtual environment
+3. Install dependencies
+4. Run `edge_camera.py` for live inference
+5. Optionally enable systemd service for auto-start
+
+Kafka, Prometheus, and Grafana are intended to run off-device.

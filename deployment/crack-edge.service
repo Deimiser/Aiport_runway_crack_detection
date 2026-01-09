@@ -1,0 +1,12 @@
+[Unit]
+Description=Crack Detection Edge Inference
+After=network.target
+
+[Service]
+User=ubuntu
+WorkingDirectory=/home/ubuntu/Aiport_runway_crack_detection/inference_service
+ExecStart=/home/ubuntu/Aiport_runway_crack_detection/venv/bin/python app/edge_camera.py
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
